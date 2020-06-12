@@ -15,7 +15,7 @@ class CreateRoutesTable extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('codeShipping');
+            $table->string('code_shipping');
             $table->string('route');
             $table->bigInteger('order')->default(1);
 
