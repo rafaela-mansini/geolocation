@@ -1,0 +1,9 @@
+.bg-principal{ background-color: #e63b4f; }
+.bg-principal .nav-link{ color: #FFF!important; }
+.card-box{ padding: 20px; color: #FFF; margin-top: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; }
+.card-box i{ float: left; font-size: 60px; opacity: 0.1; margin-left: -20px; -webkit-transform: rotate(350deg); -ms-transform: rotate(350deg); transform: rotate(350deg); }
+.card-box p{ text-align: right; font-size: 20px; font-weight: bold; line-height: 20px; }
+.card-box a{ color: #FFF; font-size: 15px; font-weight: normal; }
+.card-box a:hover{ color: #ebebf0; text-decoration: none; }
+.box_blue{ background-color: #02baef; }
+.box_gray{ background-color: #323233; }
