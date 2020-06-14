@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="{{ asset('application/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('application/css/fontawesome.min.css') }}">
         <link rel="stylesheet" href="{{ asset('application/css/style.css') }}">
+        @stack('css')
     </head>
     <body>
 
@@ -33,5 +34,6 @@
 
     <script src="{{ asset('application/js/jquery.min.js') }}"></script>
     <script src="{{ asset('application/js/bootstrap.min.js') }}"></script>
+    @stack('js')
     </body>
 </html>
