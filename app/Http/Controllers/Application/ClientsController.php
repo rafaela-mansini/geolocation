@@ -36,8 +36,6 @@ class ClientsController extends Controller
 
     public function storeCsv(Request $request){
 
-        $client = $address = null;
-
         if(!$request->hasFile('csvArchive') || !$request->file('csvArchive')->isValid() || $request->csvArchive->getClientOriginalExtension() !== 'csv'){
             return back()->withInput()->with([ 'success' => false, 'message' => 'Nenhum arquivo válido foi enviado.' ]);
         }
@@ -45,12 +43,9 @@ class ClientsController extends Controller
         try {
 
             Excel::import(new ClientsImport, $request->file('csvArchive'), \Maatwebsite\Excel\Excel::CSV);
-
             return redirect('/clientes')->with([ 'success', true, 'message' => 'Cadastro efetuado com sucesso' ]);
 
         } catch (\Throwable $th) {
-            if($client !== null) $client->delete();
-            if($address !== null) $address->delete();
             return back()->withInput()->with([ 'success' => false, 'message' => 'Ops, ocorreu um erro: '.$th->getMessage() ]);
         }
         

@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Clients;
+use App\Models\Adresses;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
@@ -20,12 +21,36 @@ class ClientsImport implements ToModel, WithHeadingRow
         $urlApiGoogle = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$address.'&key='.env('GOOGLE_KEY');
         $curl = new Curl();
         $result_address = $curl->get($urlApiGoogle);
+        
+        $client =  Clients::create([
+            'name' => $data[0],
+            'email' => $data[1],
+            'birth' => date('Y-m-d', strtotime($data[2])),
+        ]);
+        $address = Adresses::create([
+            'zipcode'       => $result_address[0]['address_components'][6]['long_name'],
+            'street'        => $result_address[0]['address_components'][1]['long_name'],
+            'number'        => $result_address[0]['address_components'][0]['long_name'],
+            'neighborhood'  => $result_address[0]['address_components'][2]['long_name'],
+            'state'         => $result_address[0]['address_components'][3]['short_name'],
+            'city'          => $result_address[0]['address_components'][4]['long_name'], 
+            'lat'           => $result_address[0]['geometry']['location']['lat'],
+            'lng'           => $result_address[0]['geometry']['location']['lng'],
+            'clients_id'    => $client->id
+        ]);
+        //dd($client, $address);
+        return $client;
 
-        return Clients::createImport($data, $result_address);
+        // return Clients::createImport($data, $result_address);
         
     }
     public function headingRow():int{
         return 1;
     }
+    // public function getCsvSettings():array{
+    //     return [
+    //         'delimiter' => ';',
+    //     ];
+    // }
 
 }
