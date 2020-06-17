@@ -28,6 +28,13 @@
             </tbody>
         </table>
         <a href="{{ url('/clientes/create') }}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Cadastrar Cliente</a>
-        <button id="exportCsv" class="btn btn-warning"><i class="fas fa-file-csv"></i> Importar CSV</button>
+        <button data-toggle="modal" data-target="#modalCsv" class="btn btn-warning"><i class="fas fa-file-csv"></i> Importar CSV</button>
+
+        @include('application.clients.csvForm')
     </div>
+
+    @push('js')
+        <script>
+        </script>
+    @endpush
 @endsection
