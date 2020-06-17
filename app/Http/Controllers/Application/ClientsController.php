@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Clients;
+use App\Models\Utils\GoogleApi;
 use App\Imports\ClientsImport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -22,6 +23,14 @@ class ClientsController extends Controller
     public function store(Request $request){
         $client = $address = null;
         try {
+
+            $addressGeolocation = GoogleApi::addresGeolocation($request->all());
+            $geolocation = GoogleApi::getGeocode($addressGeolocation);
+
+            $request->request->add([
+                'lat' => $geolocation[0]['geometry']['location']['lat'],
+                'lng' => $geolocation[0]['geometry']['location']['lng'],
+            ]);
 
             $client = Clients::create($request->all());
             $address = $client->adresses()->create($request->all());

@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 
-use App\Models\Utils\Curl;
+use App\Models\Utils\GoogleApi;
 
 class ClientsImport implements ToModel, WithHeadingRow
 {
@@ -16,11 +16,10 @@ class ClientsImport implements ToModel, WithHeadingRow
         // row retorna array de chave(todos os campos de header) com seu valor com virgulas.
         // separar as virgulas com o explode dentro da key com todos os campos informados.
         $data = explode(';', $row[key($row)]);
+        
         // formato aceito para api do google é com "+" no lugar dos espaços e sem traços/virgulas
         $address = str_replace(' ', '+', str_replace(',', '', str_replace('-', '', trim($data[4]))));
-        $urlApiGoogle = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$address.'&key='.env('GOOGLE_KEY');
-        $curl = new Curl();
-        $result_address = $curl->get($urlApiGoogle);
+        $result_address = GoogleApi::getGeocode($address);
         
         $client =  Clients::create([
             'name' => $data[0],
@@ -38,19 +37,12 @@ class ClientsImport implements ToModel, WithHeadingRow
             'lng'           => $result_address[0]['geometry']['location']['lng'],
             'clients_id'    => $client->id
         ]);
-        //dd($client, $address);
+        
         return $client;
-
-        // return Clients::createImport($data, $result_address);
         
     }
     public function headingRow():int{
         return 1;
     }
-    // public function getCsvSettings():array{
-    //     return [
-    //         'delimiter' => ';',
-    //     ];
-    // }
 
 }
