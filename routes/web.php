@@ -8,4 +8,5 @@ Route::namespace('Application')->group(function(){
     Route::get('/clientes/create', 'ClientsController@create');
     Route::post('/clientes', 'ClientsController@store');
     Route::post('/clientes/csv', 'ClientsController@storeCsv');
+    Route::post('/clientes/rota', 'ClientsController@route');
 });

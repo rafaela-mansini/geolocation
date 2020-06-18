@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Clients;
+use App\Models\Adresses;
 use App\Models\Utils\GoogleApi;
 use App\Imports\ClientsImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -59,4 +60,21 @@ class ClientsController extends Controller
         }
         
     }
+
+    public function route(Request $request){
+
+        
+
+        $bestRoute = array();
+
+        foreach ($request->exportData as $id) {
+            $address = Adresses::find($id);
+            $route = GoogleApi::distance($address->lat, $address->lng);
+
+            $bestRoute[] = ['address' => $address, 'distance' => $route['value'], 'textDistance' => $route['text']];
+        }
+        array_multisort(array_column($bestRoute, "distance"), SORT_ASC, $bestRoute);
+        return response()->json($bestRoute);
+    }
+
 }

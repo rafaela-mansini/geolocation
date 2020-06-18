@@ -11,7 +11,7 @@ class GoogleApi extends Model
     public static function getGeocode($address){
         $urlApiGoogle = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$address.'&key='.env('GOOGLE_KEY');
         $curl = new Curl();
-        return $curl->get($urlApiGoogle);
+        return $curl->get($urlApiGoogle)['results'];
     }
     public static function addresGeolocation($data){
         
@@ -22,5 +22,10 @@ class GoogleApi extends Model
             .Str::slug($data['state'], '+');
 
         return Str::slug($address, '+');
+    }
+    public static function distance($lat, $lng){
+        $urlApiGoogle = 'https://maps.googleapis.com/maps/api/distancematrix/json?&origins='.env('INITIAL_LAT').','.env('INITIAL_LNG').'|&destinations='.$lat.','.$lng.'&key='.env('GOOGLE_KEY');
+        $curl = new Curl();
+        return $curl->get($urlApiGoogle)['rows'][0]['elements'][0]['distance'];        
     }
 }

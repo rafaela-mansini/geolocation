@@ -23,7 +23,7 @@ class Curl extends Model
         ]);
         $result = json_decode(curl_exec($this->objCurl), true);
         $this->close();
-        return $result['results'];
+        return $result;
     }
     public function post($url, $data){
         $this->init();        
