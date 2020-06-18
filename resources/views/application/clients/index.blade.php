@@ -6,7 +6,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" class="text-center">Selecionar para <br/>Exportar/Gerar rota</th>
+                    <th scope="col" class="text-center">Selecionar para <br/>Gerar rota</th>
                     <th scope="col">Nome</th>
                     <th scope="col">E-mail</th>
                     <th scope="col">Nascimento</th>

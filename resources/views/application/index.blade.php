@@ -28,7 +28,7 @@
                     <i class="fas fa-truck-loading"></i>
                     <p>
                         Rotas<br/>
-                        <a href="{{ url('rotas') }}">Ver todos</a>
+                        <a href="#.">Ver todos</a>
                     </p>
                 </div>
             </div>

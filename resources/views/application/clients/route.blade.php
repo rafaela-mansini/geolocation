@@ -23,7 +23,7 @@
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Exportar rota</button>
+        <button type="button" class="btn btn-primary disabled">Exportar rota</button>
       </div>
     </div>
   </div>

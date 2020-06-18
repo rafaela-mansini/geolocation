@@ -23,9 +23,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('clientes') }}">Clientes</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('rotas') }}">Rotas</a>
-                </li>
             </ul>
         </div>
     </nav>
