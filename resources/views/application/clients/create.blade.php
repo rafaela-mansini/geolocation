@@ -10,15 +10,15 @@
                     <legend>Dados pessoais</legend>
                     <div class="col-md-8 form-group">
                         <label for="name">Digite seu nome</label>
-                        <input class="form-control" type="text" name="name" id="name" value="{{ old('name') }}" />
+                        <input class="form-control" type="text" name="name" id="name" value="{{ old('name') }}" required />
                     </div>
                     <div class="col-md-4 form-group">
                         <label for="birth">Nascimento</label>
-                        <input class="form-control" type="date" name="birth" id="birth" value="{{ old('birth') }}" />
+                        <input class="form-control" type="date" name="birth" id="birth" value="{{ old('birth') }}" required />
                     </div>
                     <div class="col-md-12 form-group">
                         <label for="email">E-mail</label>
-                        <input class="form-control" type="email" name="email" id="email" value="{{ old('email') }}" />
+                        <input class="form-control" type="email" name="email" id="email" value="{{ old('email') }}" required />
                     </div>
                 </div>
             </fieldset>
@@ -28,15 +28,15 @@
                     <legend>Endereço</legend>
                     <div class="col-md-4 form-group">
                         <label for="zipcode">CEP</label>
-                        <input class="form-control zipcode" type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" />
+                        <input class="form-control zipcode" type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" required />
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="street">Logradouro</label>
-                        <input class="form-control" type="text" name="street" id="street" value="{{ old('street') }}" />
+                        <input class="form-control" type="text" name="street" id="street" value="{{ old('street') }}" required />
                     </div>
                     <div class="col-md-2 form-group">
                         <label for="number">Número</label>
-                        <input class="form-control" type="text" name="number" id="number" value="{{ old('number') }}" />
+                        <input class="form-control" type="text" name="number" id="number" value="{{ old('number') }}" required />
                     </div>
                     <div class="col-md-12 form-group">
                         <label for="complement">Complemento</label>
@@ -44,15 +44,15 @@
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="neighborhood">Bairro</label>
-                        <input class="form-control" type="text" name="neighborhood" id="neighborhood" value="{{ old('neighborhood') }}" />
+                        <input class="form-control" type="text" name="neighborhood" id="neighborhood" value="{{ old('neighborhood') }}" required />
                     </div>
                     <div class="col-md-5 form-group">
                         <label for="city">Cidade</label>
-                        <input class="form-control" type="text" name="city" id="city" value="{{ old('city') }}" />
+                        <input class="form-control" type="text" name="city" id="city" value="{{ old('city') }}" required />
                     </div>
                     <div class="col-md-1 form-group">
                         <label for="state">UF</label>
-                        <input class="form-control" type="text" name="state" id="state" value="{{ old('state') }}" />
+                        <input class="form-control" type="text" name="state" id="state" value="{{ old('state') }}" required />
                     </div>
                 </div>
             <fieldset>
